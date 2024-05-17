@@ -8,7 +8,7 @@ const Footer = () => {
             {"Built by "}
             <a href="https://twitter.com/odusseuskamto" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">Urlyss</a>
             {". The source code is available on "}
-            <a href="https://github.com/urlyss/summaexplorer" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">GitHub</a>
+            <a href="https://github.com/urlyss/summa" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">GitHub</a>
         </p>
     </div>
     </footer>
