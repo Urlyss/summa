@@ -9,7 +9,7 @@ const HomePage = () => {
       <section className="h-fit flex lg:flex-row flex-col gap-10 bg-secondary px-4 py-20">
         <div className="flex-1 space-y-4 flex flex-col justify-center">
           <h1 className="text-4xl text-justify ">
-            Explore the Depths of Aquinas' Masterpiece.
+            {`Explore the Depths of Aquinas' Masterpiece.`}
             <br />
             Your Comprehensive Guide to the Summa Theologica.
           </h1>
