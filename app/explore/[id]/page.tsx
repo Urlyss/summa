@@ -11,6 +11,7 @@ import {
 import React from "react";
 import ArticleDetail from "@/components/ArticleDetail";
 import CustomBreadCrumb from "@/components/CustomBreadCrumb";
+import { notFound } from "next/navigation";
 
 const page = ({ params }: { params: { id: string } }) => {
   const ids = parseQueryString(params.id);
@@ -167,16 +168,11 @@ const page = ({ params }: { params: { id: string } }) => {
     default:
       break;
   }
-
-  return (
-    <div>
-      {content != null ? (
-        <div className="mt-10 lg:px-36">{content}</div>
-      ) : (
-        <div>Error on the element selected</div>
-      )}
-    </div>
-  );
+  if(content != null){
+    return (<div className="mt-10 lg:px-36">{content}</div>)
+  }else{
+    return notFound()
+  }
 };
 
 export default page;
