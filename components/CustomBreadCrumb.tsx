@@ -20,7 +20,7 @@ const CustomBreadCrumb = ({
         {links.map((link, ind) => (
           <div key={ind} className="flex items-center gap-4">
             <BreadcrumbItem>
-              {ind < links.length - 1 ? (
+              {links.length == 1 || ind < links.length - 1 ? (
                 <BreadcrumbLink asChild>
                   <Link href={link.href}>{link.title}</Link>
                 </BreadcrumbLink>

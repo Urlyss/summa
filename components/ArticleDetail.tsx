@@ -24,7 +24,7 @@ const ArticleDetail = ({
   treatise: { id: number; title: string };
   article: {
     id: number;
-    title: string[];
+    title: string;
     objections: {
       id: number;
       text: string[];

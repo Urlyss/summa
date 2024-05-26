@@ -21,11 +21,19 @@ const page = ({ params }: { params: { id: string } }) => {
       const idPart = ids[0] as string;
       const treatiseList = getTreatisesByPartId(idPart);
       if (treatiseList != null) {
+        const breadCrumbLinks = [
+          {
+            href: `/explore/`,
+            title: 'Parts List',
+          }]
         content = (
-          <TreatiseList
-            treatises={treatiseList.treatises}
-            part={{ id: treatiseList.partId, title: treatiseList.partTitle }}
-          />
+          <div className="flex flex-col">
+            <CustomBreadCrumb links={breadCrumbLinks} />
+            <TreatiseList
+              treatises={treatiseList.treatises}
+              part={{ id: treatiseList.partId, title: treatiseList.partTitle }}
+            />
+          </div>
         );
       }
       break;
@@ -37,12 +45,16 @@ const page = ({ params }: { params: { id: string } }) => {
       if (questionList != null) {
         const breadCrumbLinks = [
           {
+            href: `/explore/`,
+            title: 'Parts List',
+          },
+          {
             href: `/explore/Pt${questionList.partId}`,
             title: questionList.partTitle,
           },
           {
             href: `/explore/Pt${questionList.partId}-Tr${questionList.treatiseId}`,
-            title: questionList.treatiseTitle,
+            title: questionList.treatiseTitle || questionList.partTitle,
           },
         ];
         content = (
@@ -74,12 +86,16 @@ const page = ({ params }: { params: { id: string } }) => {
       if (articleList != null) {
         const breadCrumbLinks = [
           {
+            href: `/explore/`,
+            title: 'Parts List',
+          },
+          {
             href: `/explore/Pt${articleList.partId}`,
             title: articleList.partTitle,
           },
           {
             href: `/explore/Pt${articleList.partId}-Tr${articleList.treatiseId}`,
-            title: articleList.treatiseTitle,
+            title: articleList.treatiseTitle || articleList.partTitle,
           },
           {
             href: `/explore/Pt${articleList.partId}-Tr${articleList.treatiseId}-Qu${articleList.questionId}`,
@@ -122,12 +138,16 @@ const page = ({ params }: { params: { id: string } }) => {
       if (articleDetail != null) {
         const breadCrumbLinks = [
           {
+            href: `/explore/`,
+            title: 'Parts List',
+          },
+          {
             href: `/explore/Pt${articleDetail.partId}`,
             title: articleDetail.partTitle,
           },
           {
             href: `/explore/Pt${articleDetail.partId}-Tr${articleDetail.treatiseId}`,
-            title: articleDetail.treatiseTitle,
+            title: articleDetail.treatiseTitle || articleDetail.partTitle,
           },
           {
             href: `/explore/Pt${articleDetail.partId}-Tr${articleDetail.treatiseId}-Qu${articleDetail.questionId}`,
@@ -135,7 +155,7 @@ const page = ({ params }: { params: { id: string } }) => {
           },
           {
             href: `/explore/Pt${articleDetail.partId}-Tr${articleDetail.treatiseId}-Qu${articleDetail.questionId}-Ar${articleDetail.article.id}`,
-            title: articleDetail.article.title[0],
+            title: articleDetail.article.title,
           },
         ];
         content = (

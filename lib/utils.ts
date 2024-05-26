@@ -17,7 +17,7 @@ export function parseQueryString(queryString: string): (string | number)[] | nul
   try {
       // Define regex patterns for each part of the query string
       const patterns:{ [key: string]: RegExp } = {
-          'part': /^Pt([a-zA-Z]+)/,
+          'part': /^Pt([a-zA-Z1-9]+)/,
           'treatise': /^Tr(\d+)/,
           'question': /^Qu(\d+)/,
           'article': /^Ar(\d+)/
@@ -115,7 +115,7 @@ export function getTreatisesByPartId(
     // Extract the treatises from the found part
     const treatises = part.treatises.map((treatise) => ({
       id: treatise.id,
-      title: treatise.title,
+      title: treatise.title || part.title,
     }));
 
     // Return an object containing the part's id, title, and treatises
@@ -226,7 +226,7 @@ export function getArticlesByPartTreatiseQuestionId(
       // Extract the articles from the found question
       const articles = question.articles.map(article => ({
           id: article.id,
-          title: article.title.join(' ')
+          title: article.title.join(' ') || question.title || treatise.title
       }));
 
       // Return an object containing the part's id, title, the treatise's id, title, the question's id, title, description, and articles
@@ -272,7 +272,7 @@ export function getDetailedArticleByPartTreatiseQuestionArticleId(
   questionDescription: string[];
   article: {
       id: number;
-      title: string[];
+      title: string;
       objections: {
         id: number;
         text: string[];
@@ -337,7 +337,7 @@ export function getDetailedArticleByPartTreatiseQuestionArticleId(
           questionDescription: question.description as string[],
           article: {
               id: article.id,
-              title: article.title,
+              title: article.title.join(' ') || question.title || treatise.title,
               objections: article.objections,
               counter: article.counter,
               replies: article.replies,
