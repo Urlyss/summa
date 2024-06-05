@@ -22,6 +22,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
+import CustomSearchBox from "./CustomSearchBox";
 
 export const Header = () => {
   return (
@@ -107,6 +108,7 @@ export const Header = () => {
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2">
           <nav className="flex items-center space-x-2">
+            <CustomSearchBox />
             <a
               target="_blank"
               rel="noreferrer"
